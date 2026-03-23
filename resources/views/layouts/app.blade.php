@@ -32,6 +32,35 @@
                         <a class="nav-link" href="{{ route('cars.index') }}">Cars</a>
                     </li>
                 </ul>
+
+                <ul class="navbar-nav ms-auto">
+                    @guest
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('login') }}">Login</a>
+                        </li>
+
+                        @if (Route::has('register'))
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('register') }}">Register</a>
+                            </li>
+                        @endif
+                    @else
+                        <li class="nav-item d-flex align-items-center me-3">
+                            <span class="nav-link mb-0">
+                                {{ auth()->user()->name }} ({{ auth()->user()->role }})
+                            </span>
+                        </li>
+
+                        <li class="nav-item">
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <button type="submit" class="btn btn-link nav-link" style="display:inline; border:none; background:none; padding: 8px 0;">
+                                    Logout
+                                </button>
+                            </form>
+                        </li>
+                    @endguest
+                </ul>
             </div>
         </div>
     </nav>

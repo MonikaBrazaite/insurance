@@ -5,7 +5,10 @@
 
         <div class="d-flex justify-content-between align-items-center mb-3">
             <h2>Owners</h2>
-            <a href="{{ route('owners.create') }}" class="btn btn-success">Add new owner</a>
+
+            @if(auth()->user()->role === 'editor')
+                <a href="{{ route('owners.create') }}" class="btn btn-success">Add new owner</a>
+            @endif
         </div>
 
         @if ($owners->count() === 0)
@@ -33,18 +36,22 @@
                         <td>{{ $owner->phone }}</td>
                         <td>{{ $owner->email }}</td>
                         <td>
-                            <a href="{{ route('owners.edit', $owner->id) }}" class="btn btn-primary btn-sm">
-                                Edit
-                            </a>
+                            @if(auth()->user()->role === 'editor')
+                                <a href="{{ route('owners.edit', $owner->id) }}" class="btn btn-primary btn-sm">
+                                    Edit
+                                </a>
 
-                            <form action="{{ route('owners.destroy', $owner->id) }}" method="POST" class="d-inline">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm"
-                                        onclick="return confirm('Delete this owner?')">
-                                    Delete
-                                </button>
-                            </form>
+                                <form action="{{ route('owners.destroy', $owner->id) }}" method="POST" class="d-inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm"
+                                            onclick="return confirm('Delete this owner?')">
+                                        Delete
+                                    </button>
+                                </form>
+                            @else
+                                <span class="text-muted">View only</span>
+                            @endif
                         </td>
                     </tr>
                 @endforeach

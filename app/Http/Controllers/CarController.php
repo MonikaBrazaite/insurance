@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class CarController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('role:editor')->except(['index']);
+    }
+
     public function index()
     {
         $cars = Car::with('owner')->get();

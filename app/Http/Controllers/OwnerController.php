@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class OwnerController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('role:editor')->except(['index']);
+    }
+
     // show all owners
     public function index()
     {
