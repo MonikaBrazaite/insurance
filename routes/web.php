@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\CarController;
 
@@ -34,3 +36,11 @@ Route::middleware('auth')->group(function () {
         Route::delete('/cars/{car}', [CarController::class, 'destroy'])->name('cars.destroy');
     });
 });
+
+Route::get('/lang/{locale}', function ($locale) {
+    if (in_array($locale, ['en', 'lt'])) {
+        session(['locale' => $locale]);
+    }
+
+    return redirect()->back();
+})->name('lang.switch');

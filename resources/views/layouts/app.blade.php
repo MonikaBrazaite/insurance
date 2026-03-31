@@ -26,22 +26,28 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('owners.index') }}">Owners</a>
+                        <a class="nav-link" href="{{ route('owners.index') }}">{{ __('messages.owners') }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('cars.index') }}">Cars</a>
+                        <a class="nav-link" href="{{ route('cars.index') }}">{{ __('messages.cars') }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('lang.switch', 'en') }}">EN</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('lang.switch', 'lt') }}">LT</a>
                     </li>
                 </ul>
 
                 <ul class="navbar-nav ms-auto">
                     @guest
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">Login</a>
+                            <a class="nav-link" href="{{ route('login') }}">{{ __('messages.login') }}</a>
                         </li>
 
                         @if (Route::has('register'))
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">Register</a>
+                                <a class="nav-link" href="{{ route('register') }}">{{ __('messages.register') }}</a>
                             </li>
                         @endif
                     @else
@@ -55,7 +61,7 @@
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
                                 <button type="submit" class="btn btn-link nav-link" style="display:inline; border:none; background:none; padding: 8px 0;">
-                                    Logout
+                                    {{ __('messages.logout') }}
                                 </button>
                             </form>
                         </li>
