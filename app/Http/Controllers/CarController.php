@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreCarRequest;
+use App\Http\Requests\UpdateCarRequest;
 use App\Models\Car;
 use App\Models\Owner;
-use Illuminate\Http\Request;
 
 class CarController extends Controller
 {
@@ -26,16 +27,9 @@ class CarController extends Controller
         return view('cars.create', compact('owners'));
     }
 
-    public function store(Request $request)
+    public function store(StoreCarRequest $request)
     {
-        $request->validate([
-            'reg_number' => 'required',
-            'brand' => 'required',
-            'model' => 'required',
-            'owner_id' => 'required'
-        ]);
-
-        Car::create($request->all());
+        Car::create($request->validated());
 
         return redirect()->route('cars.index');
     }
@@ -46,16 +40,9 @@ class CarController extends Controller
         return view('cars.edit', compact('car', 'owners'));
     }
 
-    public function update(Request $request, Car $car)
+    public function update(UpdateCarRequest $request, Car $car)
     {
-        $request->validate([
-            'reg_number' => 'required',
-            'brand' => 'required',
-            'model' => 'required',
-            'owner_id' => 'required'
-        ]);
-
-        $car->update($request->all());
+        $car->update($request->validated());
 
         return redirect()->route('cars.index');
     }

@@ -20,27 +20,42 @@
 
             <div class="mb-3">
                 <label class="form-label">{{ __('messages.name') }}</label>
-                <input type="text" name="name" class="form-control" value="{{ old('name', $owner->name) }}">
+                <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name', $owner->name) }}">
+                @error('name')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
 
             <div class="mb-3">
                 <label class="form-label">{{ __('messages.surname') }}</label>
-                <input type="text" name="surname" class="form-control" value="{{ old('surname', $owner->surname) }}">
+                <input type="text" name="surname" class="form-control @error('surname') is-invalid @enderror" value="{{ old('surname', $owner->surname) }}">
+                @error('surname')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
 
             <div class="mb-3">
                 <label class="form-label">{{ __('messages.phone') }}</label>
-                <input type="text" name="phone" class="form-control" value="{{ old('phone', $owner->phone) }}">
+                <input type="text" name="phone" class="form-control @error('phone') is-invalid @enderror" value="{{ old('phone', $owner->phone) }}">
+                @error('phone')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
 
             <div class="mb-3">
                 <label class="form-label">{{ __('messages.email') }}</label>
-                <input type="text" name="email" class="form-control" value="{{ old('email', $owner->email) }}">
+                <input type="text" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email', $owner->email) }}">
+                @error('email')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
 
             <div class="mb-3">
                 <label class="form-label">{{ __('messages.birth_date') }}</label>
-                <input type="date" name="birth_date" class="form-control" value="{{ old('birth_date', $owner->birth_date) }}">
+                <input type="text" name="birth_date" class="form-control datepicker @error('birth_date') is-invalid @enderror" value="{{ old('birth_date', $owner->birth_date) }}">
+                @error('birth_date')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
 
             <button type="submit" class="btn btn-primary">{{ __('messages.update') }}</button>

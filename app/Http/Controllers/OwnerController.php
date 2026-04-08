@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreOwnerRequest;
+use App\Http\Requests\UpdateOwnerRequest;
 use App\Models\Owner;
-use Illuminate\Http\Request;
 
 class OwnerController extends Controller
 {
@@ -27,14 +28,9 @@ class OwnerController extends Controller
     }
 
     // store new owner
-    public function store(Request $request)
+    public function store(StoreOwnerRequest $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'surname' => 'required',
-        ]);
-
-        Owner::create($request->all());
+        Owner::create($request->validated());
 
         return redirect()->route('owners.index');
     }
@@ -46,17 +42,9 @@ class OwnerController extends Controller
     }
 
     // update owner
-    public function update(Request $request, Owner $owner)
+    public function update(UpdateOwnerRequest $request, Owner $owner)
     {
-        $request->validate([
-            'name' => 'required',
-            'surname' => 'required',
-            'phone' => 'nullable',
-            'email' => 'nullable|email',
-            'birth_date' => 'nullable|date',
-        ]);
-
-        $owner->update($request->all());
+        $owner->update($request->validated());
 
         return redirect()->route('owners.index');
     }

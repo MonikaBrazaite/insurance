@@ -19,27 +19,42 @@
 
             <div class="mb-3">
                 <label class="form-label">Name</label>
-                <input type="text" name="name" class="form-control" value="{{ old('name') }}">
+                <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}">
+                @error('name')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
 
             <div class="mb-3">
                 <label class="form-label">Surname</label>
-                <input type="text" name="surname" class="form-control" value="{{ old('surname') }}">
+                <input type="text" name="surname" class="form-control @error('surname') is-invalid @enderror" value="{{ old('surname') }}">
+                @error('surname')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
 
             <div class="mb-3">
                 <label class="form-label">Phone</label>
-                <input type="text" name="phone" class="form-control" value="{{ old('phone') }}">
+                <input type="text" name="phone" class="form-control @error('phone') is-invalid @enderror" value="{{ old('phone') }}">
+                @error('phone')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
 
             <div class="mb-3">
                 <label class="form-label">Email</label>
-                <input type="text" name="email" class="form-control" value="{{ old('email') }}">
+                <input type="text" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}">
+                @error('email')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
 
             <div class="mb-3">
                 <label class="form-label">Birth date</label>
-                <input type="date" name="birth_date" class="form-control" value="{{ old('birth_date') }}">
+                <input type="text" name="birth_date" class="form-control datepicker @error('birth_date') is-invalid @enderror" value="{{ old('birth_date') }}">
+                @error('birth_date')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
 
             <button type="submit" class="btn btn-success">Save</button>
