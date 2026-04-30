@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\CarController;
+use App\Http\Controllers\CarPhotoController;
 
 Route::get('/', function () {
     return redirect()->route('owners.index');
@@ -34,6 +35,9 @@ Route::middleware('auth')->group(function () {
         Route::get('/cars/{car}/edit', [CarController::class, 'edit'])->name('cars.edit');
         Route::put('/cars/{car}', [CarController::class, 'update'])->name('cars.update');
         Route::delete('/cars/{car}', [CarController::class, 'destroy'])->name('cars.destroy');
+
+        Route::post('/cars/{car}/photos', [CarPhotoController::class, 'store'])->name('car_photos.store');
+        Route::delete('/cars/{car}/photos/{photo}', [CarPhotoController::class, 'destroy'])->name('car_photos.destroy');
     });
 });
 

@@ -37,6 +37,7 @@ class CarController extends Controller
     public function edit(Car $car)
     {
         $owners = Owner::all();
+        $car->load('photos');
         return view('cars.edit', compact('car', 'owners'));
     }
 
